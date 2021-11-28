@@ -1,3 +1,13 @@
+html, body, #root, .wrapper {
+  height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .app {
   width: 100%;
   display: flex;
@@ -84,4 +94,9 @@
 
 .preview {
   margin-bottom: 16px
+}
+
+.footer {
+  color: gray;
+  margin: 0 auto;
 }

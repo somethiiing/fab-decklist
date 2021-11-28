@@ -2,6 +2,7 @@ import React from 'react';
 
 import { equipmentParser, decklistParser } from './helpers/decklistParser';
 import { fillForm } from './helpers/formFiller';
+import placeholder from './resources/text';
 
 import './App.css';
 
@@ -131,93 +132,106 @@ class App extends React.Component {
     window.toggleShowData = () => this.toggleShowData();
 
     return (
-      <div className="app">
-        <div className='leftCol'>
-          <h2 className='sectionHeader'>Personal Information</h2>
-          <label className='section' for='fullName'>
-            <span className='label'>Full Name:</span>
-            <input
-              className='field'
-              value={this.state.nameField}
-              onChange={e => this.handleFieldOnChange(e, 'nameField')}
-            />
-          </label>
-          <label className='section' for='gemId'>
-            <span className='label'>GEM ID:</span>
-            <input
-              className='field'
-              value={this.state.gemIdField}
-              onChange={e => this.handleFieldOnChange(e, 'gemIdField')}
-            />
-          </label>
-          <label className='section' for='pronoun'>
-            <span className='label'>Pronouns:</span>
-            <input
-              className='field'
-              value={this.state.pronounField}
-              onChange={e => this.handleFieldOnChange(e, 'pronounField')}
-            />
-          </label>
+      <div className='wrapper'>
+        <div className="app">
+          <div className='leftCol'>
+            <h2 className='sectionHeader'>Personal Information</h2>
+            <label className='section' for='fullName'>
+              <span className='label'>Full Name:</span>
+              <input
+                className='field'
+                value={this.state.nameField}
+                placeholder='Full Name'
+                onChange={e => this.handleFieldOnChange(e, 'nameField')}
+              />
+            </label>
+            <label className='section' for='gemId'>
+              <span className='label'>GEM ID:</span>
+              <input
+                className='field'
+                value={this.state.gemIdField}
+                placeholder='GEM ID'
+                onChange={e => this.handleFieldOnChange(e, 'gemIdField')}
+              />
+            </label>
+            <label className='section' for='pronoun'>
+              <span className='label'>Pronouns:</span>
+              <input
+                className='field'
+                value={this.state.pronounField}
+                placeholder='Pronoun(s)'
+                onChange={e => this.handleFieldOnChange(e, 'pronounField')}
+              />
+            </label>
 
-          <h2 className='sectionHeader'>Event Information</h2>
-          <label className='section' for='date'>
-            <span className='label'>Date:</span>
-            <input
-              className='field'
-              value={this.state.dateField}
-              onChange={e => this.handleFieldOnChange(e, 'dateField')}
-            />
-          </label>
-          <label className='section' for='event'>
-            <span className='label'>Event:</span>
-            <input
-              className='field'
-              value={this.state.eventField}
-              onChange={e => this.handleFieldOnChange(e, 'eventField')}
-            />
-          </label>
+            <h2 className='sectionHeader'>Event Information</h2>
+            <label className='section' for='date'>
+              <span className='label'>Date:</span>
+              <input
+                className='field'
+                value={this.state.dateField}
+                placeholder='Date'
+                onChange={e => this.handleFieldOnChange(e, 'dateField')}
+              />
+            </label>
+            <label className='section' for='event'>
+              <span className='label'>Event:</span>
+              <input
+                className='field'
+                value={this.state.eventField}
+                placeholder='Event'
+                onChange={e => this.handleFieldOnChange(e, 'eventField')}
+              />
+            </label>
 
-          <h2 className='sectionHeader'>Deck Information</h2>
-          <label className='section' for='hero'>
-            <span className='label'>Hero:</span>
-            <input
-              className='field'
-              value={this.state.heroField}
-              onChange={e => this.handleFieldOnChange(e, 'heroField')}
-            />
-          </label>
-          <label className='section' for='equipment'>
-            <span className='label'>Equipment:</span>
-            <textarea
-              className='equipment field'
-              value={this.state.eqpField}
-              onChange={e => this.handleFieldOnChange(e, 'eqpField')}
-            />
-          </label>
-          <label className='section' for='decklist'>
-            <span className='label'>Decklist:</span>
-            <textarea
-              className='decklist field'
-              value={this.state.decklistField}
-              onChange={e => this.handleFieldOnChange(e, 'decklistField')} />
-          </label>
+            <h2 className='sectionHeader'>Deck Information</h2>
+            <label className='section' for='hero'>
+              <span className='label'>Hero:</span>
+              <input
+                className='field'
+                value={this.state.heroField}
+                placeholder='Hero'
+                onChange={e => this.handleFieldOnChange(e, 'heroField')}
+              />
+            </label>
+            <label className='section' for='equipment'>
+              <span className='label'>Equipment:</span>
+              <textarea
+                className='equipment field'
+                value={this.state.eqpField}
+                placeholder={placeholder.eqp}
+                onChange={e => this.handleFieldOnChange(e, 'eqpField')}
+              />
+            </label>
+            <label className='section' for='decklist'>
+              <span className='label'>Decklist:</span>
+              <textarea
+                className='decklist field'
+                value={this.state.decklistField}
+                placeholder={placeholder.deck}
+                onChange={e => this.handleFieldOnChange(e, 'decklistField')} />
+            </label>
 
-          <button className='button' onClick={this.handleSubmit}>Generate Decklist</button>
+            <button className='button' onClick={this.handleSubmit}>Generate Decklist</button>
 
-        </div>
-
-        <div className='rightCol'>
-          <h2 className='sectionHeader'>Preview: </h2>
-          <div className='previewContainer'>
-            <iframe className='preview' id='decklist' name='decklist' height='665' width='440' type="application/pdf" src={src} />
-            <a className='button' href={src} download={`${heroField} - decklist`}>Download Decklist</a>
           </div>
-          { showData && <>
-              <h2 className='sectionHeader'>State: </h2>
-              <pre>
-                {JSON.stringify(this.state, null, 4)}
-              </pre>
-            </>}
+
+          <div className='rightCol'>
+            <h2 className='sectionHeader'>Preview: </h2>
+            <div className='previewContainer'>
+              <iframe className='preview' id='decklist' name='decklist' height='665' width='440' type="application/pdf" src={src} />
+              <a className='button' href={src} download={`${heroField} - decklist`}>Download Decklist</a>
+            </div>
+            { showData && <>
+                <h2 className='sectionHeader'>State: </h2>
+                <pre>
+                  {JSON.stringify(this.state, null, 4)}
+                </pre>
+              </>}
+          </div>
+        </div>
+        <div className='footer'>
+            Flesh and Blood Decklist Generator by <a href='http://wilsonyu.io'>Wilson Yu</a>. Please send feedback, or report issues direactly via <a href='https://github.com/somethiiing/fab-decklist'>Github</a>.
         </div>
       </div>
     );
