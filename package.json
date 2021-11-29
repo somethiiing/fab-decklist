@@ -1,6 +1,6 @@
 {
   "name": "fab-form-filler",
-  "homepage": "https://fabdecklist.org",
+  "homepage": "http://www.fabdecklist.org",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
